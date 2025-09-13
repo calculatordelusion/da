@@ -26,8 +26,8 @@ Visit the live chatbot: [Your deployment URL will be here]
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/calculatordelusion/cb.git
-cd cb
+git clone https://github.com/calculatordelusion/da.git
+cd da
 ```
 
 2. Install dependencies:
@@ -47,11 +47,21 @@ npm run build
 
 ## 🔧 Configuration
 
-The chatbot uses OpenRouter API to access DeepSeek models. Users need to:
+The chatbot uses OpenRouter API to access DeepSeek models. 
 
+### For Local Development:
 1. Get API keys from [OpenRouter.ai](https://openrouter.ai)
-2. Enter API keys in the chatbot interface
-3. Select preferred model (V3 or R1)
+2. Create a `.env` file in the project root:
+```env
+VITE_DEEPSEEK_V3_API_KEY=your-openrouter-api-key
+VITE_DEEPSEEK_R1_API_KEY=your-openrouter-api-key
+```
+3. Start the development server
+
+### For Vercel Deployment:
+1. Add environment variables in Vercel dashboard:
+   - `VITE_DEEPSEEK_V3_API_KEY`
+   - `VITE_DEEPSEEK_R1_API_KEY`
 
 ## 📱 WordPress Integration
 
@@ -61,15 +71,20 @@ This project includes a WordPress plugin for easy integration:
 2. Configure the chatbot URL in WordPress settings
 3. Use shortcode `[deepseek_chatbot]` in posts/pages
 
-## 🌐 Deployment
+## 🌐 Deployment on Vercel
 
-### Automatic Deployment (Recommended)
-- Connected to GitHub for automatic deployments
-- Deploys to Netlify/Vercel on every push to main branch
+### Quick Deploy
+1. Fork this repository: `https://github.com/calculatordelusion/da`
+2. Connect to Vercel and import the project
+3. Add environment variables (see Configuration section)
+4. Deploy!
 
 ### Manual Deployment
 1. Run `npm run build`
 2. Upload `dist` folder contents to your hosting
+
+### Vercel Configuration
+The project includes `vercel.json` with optimal settings for Vite deployment.
 
 ## 🔒 Security
 
