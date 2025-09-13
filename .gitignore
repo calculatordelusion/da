@@ -15,6 +15,9 @@ build/
 .env.test.local
 .env.production.local
 
+# Allow production env for deployment
+!.env.production
+
 # IDE and editor files
 .vscode/
 .idea/

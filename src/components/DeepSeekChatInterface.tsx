@@ -193,9 +193,15 @@ const DeepSeekChatInterface = ({ model }: DeepSeekChatInterfaceProps) => {
   };
 
   const callDeepSeekAPI = async (messages: any[], selectedModel: string): Promise<string> => {
+    // Fallback API keys for production deployment
+    const fallbackKeys = {
+      "deepseek-v3": "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",
+      "deepseek-r1": "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"
+    };
+    
     const apiKey = selectedModel === "deepseek-v3" 
-      ? import.meta.env.VITE_DEEPSEEK_V3_API_KEY 
-      : import.meta.env.VITE_DEEPSEEK_R1_API_KEY;
+      ? (import.meta.env.VITE_DEEPSEEK_V3_API_KEY || fallbackKeys["deepseek-v3"])
+      : (import.meta.env.VITE_DEEPSEEK_R1_API_KEY || fallbackKeys["deepseek-r1"]);
 
     if (!apiKey) {
       throw new Error(`API key not found for ${selectedModel}`);
